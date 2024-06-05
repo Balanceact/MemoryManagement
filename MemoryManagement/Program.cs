@@ -8,7 +8,6 @@
         /// <param name="args"></param>
         static void Main()
         {
-
             while (true)
             {
                 Console.WriteLine("Please navigate through the menu by inputting the number" 
@@ -53,6 +52,12 @@
                         Console.WriteLine("Please enter some valid input (0, 1, 2, 3, 4)");
                         break;
                 }
+                // Teori och fakta
+                // Svar 0.1: Stacken är en trave av lådor där den översta i högen är den enda som går att nå för stunden.
+                //           Heapen är en hög av information där allt är nåbart samtidigt. Referenstyper bor på Heapen och den har ingen koll på vad som förväntas hända härnäst.
+                // Svar 0.2: Value Types är enkla på det sättet att de lagrar ett värde. Reference Types är mer komplicerade då de lagrar en referens till något annat.
+                // Svar 0.3: Se Svar 0.2, med förtydligande i form av att 'y = x' för en Reference Type betyder att x referens sätts på y och att allt som senare sker med y också
+                //           sker med det objekt på Heapen som nu både x och y refererar till.
             }
         }
 
