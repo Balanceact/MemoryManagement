@@ -52,7 +52,7 @@
                         Console.WriteLine("Please enter some valid input (0, 1, 2, 3, 4)");
                         break;
                 }
-                // Teori och fakta
+                // 0. Teori och fakta
                 // Svar 0.1: Stacken är en trave av lådor där den översta i högen är den enda som går att nå för stunden.
                 //           Heapen är en hög av information där allt är nåbart samtidigt. Referenstyper bor på Heapen och den har ingen koll på vad som förväntas hända härnäst.
                 // Svar 0.2: Value Types är enkla på det sättet att de lagrar ett värde. Reference Types är mer komplicerade då de lagrar en referens till något annat.
@@ -67,7 +67,7 @@
         static void ExamineList()
         {
             /*
-             * Loop this method untill the user inputs something to exit to main menue.
+             * Loop this method untill the user inputs something to exit to the main menu.
              * Create a switch statement with cases '+' and '-'
              * '+': Add the rest of the input to the list (The user could write +Adam and "Adam" would be added to the list)
              * '-': Remove the rest of the input from the list (The user could write -Adam and "Adam" would be removed from the list)
@@ -82,6 +82,39 @@
             //string value = input.substring(1);
 
             //switch(nav){...}
+
+            bool subMenu = true;
+            List<string> thelist = new List<string>();
+            Console.WriteLine("Use 'q' to quit, '+' to add to the list and '-' to remove from the list.");
+            do
+            {
+                string input = Console.ReadLine();
+                char nav = input[0];
+                string value = input.Substring(1);
+                switch (nav)
+                {
+                    case '+':
+                        thelist.Add(value);
+                        Console.WriteLine($"Current Capacity: {thelist.Capacity}");
+                        break;
+                    case '-':
+                        thelist.Remove(value);
+                        Console.WriteLine($"Current Capacity: {thelist.Capacity}");
+                        break;
+                    case 'q':
+                        subMenu = false;
+                        break;
+                    default:
+                        Console.WriteLine("Use only q, + or -");
+                        break;
+                }
+            } while (subMenu);
+            // Svar 1.1: Se ovan.
+            // Svar 1.2: När första objektet läggs till så ökar listans kapacitet från 0 till 4, därefter ökar kapaciteten varje gång listan överskrider den innevarande kapaciteten.
+            // Svar 1.3: Första gången så ökar kapaciteten från 0 till 4, därefter så dubbleras listans kapacitet efter behov.
+            // Svar 1.4: För att DefaultCapacity är hårdkodat till 4 och dokumentationen beskriver att listan därefter kommer att ökas med multipler av 2.
+            // Svar 1.5: Nej.
+            // Svar 1.6: När listan behöver begränsas i kapacitet.
         }
 
         /// <summary>
