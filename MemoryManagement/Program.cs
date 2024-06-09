@@ -16,6 +16,7 @@
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParenthesis"
+                    + "\n5. ReverseText"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -40,6 +41,9 @@
                         break;
                     case '4':
                         CheckParanthesis();
+                        break;
+                    case '5':
+                        ReverseText();
                         break;
                     /*
                      * Extend the menu to include the recursive 
@@ -190,7 +194,44 @@
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+            bool subMenu = true;
+            Stack<string> theStack = new Stack<string>();
+            Console.WriteLine("Use 'q' to quit, '+' to add to the stack and '-' to remove from the stack.");
+            do
+            {
+                string input = Console.ReadLine();
+                char nav = input[0];
+                string value = input.Substring(1);
+                switch (nav)
+                {
+                    case '+':
+                        theStack.Push(value);
+                        Console.WriteLine($"Current Count: {theStack.Count}");
+                        break;
+                    case '-':
+                        theStack.Pop();
+                        Console.WriteLine($"Current Count: {theStack.Count}");
+                        break;
+                    case 'q':
+                        subMenu = false;
+                        break;
+                    default:
+                        Console.WriteLine("Use only q, + or -");
+                        break;
+                }
+            } while (subMenu);
         }
+        // Svar 3.1: a. Stack<string> theStack = new Stack<string>();
+        //           b. theStack.Push("Kalle");
+        //           c. theStack.Push("Greta");
+        //           d. theStack.Pop();
+        //           e. theStack.Push("Stina");
+        //           f. theStack.Pop();
+        //           g. theStack.Push("Olle");
+        //           h. theStack.Pop();
+        //           i. theStack.Pop();
+        // Svar 3.2: Se ReverseText() nedan.
+
 
         static void CheckParanthesis()
         {
@@ -200,6 +241,24 @@
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
 
+        }
+
+        static void ReverseText()
+        {
+            Stack<char> theStack = new Stack<char>();
+            Console.WriteLine("Input a string to be reversed.");
+            string input = Console.ReadLine();
+
+            for (int i = 0; i < input.Length ; i++)
+            {
+                theStack.Push(input[i]);
+                //Console.WriteLine($"{i} {theStack.Peek()}");
+            }
+            for (int i = theStack.Count; i > 0 ; i--)
+            {
+                Console.Write($"{theStack.Pop()}");
+            }
+            Console.WriteLine("");
         }
 
     }
