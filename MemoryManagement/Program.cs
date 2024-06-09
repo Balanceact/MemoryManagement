@@ -127,7 +127,58 @@
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+            bool subMenu = true;
+            Queue<string> theQueue = new Queue<string>();
+            Console.WriteLine("Use 'q' to quit, '+' to add to the queue and '-' to remove from the queue.");
+            do
+            {
+                string input = Console.ReadLine();
+                char nav = input[0];
+                string value = input.Substring(1);
+                switch (nav)
+                {
+                    case '+':
+                        theQueue.Enqueue(value);
+                        Console.WriteLine($"Current Count: {theQueue.Count}");
+                        break;
+                    case '-':
+                        theQueue.Dequeue();
+                        Console.WriteLine($"Current Count: {theQueue.Count}");
+                        break;
+                    case 'q':
+                        subMenu = false;
+                        break;
+                    default:
+                        Console.WriteLine("Use only q, + or -");
+                        break;
+                }
+            } while (subMenu);
         }
+        // Svar 2.1: a. Queue<string> theQueue = new Queue<string>();
+        //           b. theQueue.Enqueue("Kalle");
+        //           c. theQueue.Enqueue("Greta");
+        //           d. theQueue.Dequeue();
+        //           e. theQueue.Enqueue("Stina");
+        //           f. theQueue.Dequeue();
+        //           g. theQueue.Enqueue("Olle");
+        //           h. theQueue.Dequeue();
+        //           i. theQueue.Dequeue();
+        // Svar 2.2: +Kalle
+        //           Current Count: 1
+        //           +Greta
+        //           Current Count: 2
+        //           -
+        //           Current Count: 1
+        //           +Stina
+        //           Current Count: 2
+        //           -
+        //           Current Count: 1
+        //           +Olle
+        //           Current Count: 2
+        //           -
+        //           Current Count: 1
+        //           -
+        //           Current Count: 0
 
         /// <summary>
         /// Examines the datastructure Stack
