@@ -1,4 +1,6 @@
-﻿namespace MemoryManagement
+﻿using System.ComponentModel.Design;
+
+namespace MemoryManagement
 {
     class Program
     {
@@ -241,7 +243,64 @@
              * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
+            Stack<char> theStack = new Stack<char>();
+            Console.WriteLine("Input a string to be verified.");
+            string input = Console.ReadLine();
+            bool correct = true;
+            char peek;
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == '{' || input[i] == '[' || input[i] == '(')
+                {
+                    theStack.Push(input[i]);
+                    //Console.WriteLine($"{theStack.Count} + {input[i]} {correct}");
+                }
+                if (input[i] == ')' || input[i] == ']' || input[i] == '}')
+                {
+                    peek = theStack.Peek();
+                    if (theStack.Count == 0)
+                    {
+                        correct = false;
+                        //Console.WriteLine($"{correct}");
+                    }
+                    else if (matchingParanthesis(peek, input[i]))
+                    {
+                        theStack.Pop();
+                        correct = true;
+                        //Console.WriteLine($"{theStack.Count} - {input[i]} {correct}");
+                    }
+                    else if (!matchingParanthesis(peek, input[i]))
+                    {
+                        correct = false;
+                        //Console.WriteLine($"{theStack.Count} - {input[i]} {correct}");
+                    }
+                }
+            }
+            if (correct && theStack.Count == 0)
+            {
+                Console.WriteLine("The string is balanced.");
+            }
+            else
+            {
+                Console.WriteLine("The string isn't balanced.");
+            }
+        }
+        // Svar 4.1: En Stack känns mest logisk av de tre valen.
+        //           Plocka in alla '{', '[' och '(' i stacken.
+        //           Om du möter '}', ']' eller ')', plocka ut sista ur stacken och jämför. Om maka par, kasta.
+        //           Om du inte har rester kvar i stacken och inte sitter med en avslutande kvar så är strängen ok.
+        // Svar 4.2: Se ovan.
 
+        private static bool matchingParanthesis(char char1, char char2)
+        {
+            if (char1 == '(' && char2 == ')')
+                return true;
+            else if (char1 == '{' && char2 == '}')
+                return true;
+            else if (char1 == '[' && char2 == ']')
+                return true;
+            else
+                return false;
         }
 
         static void ReverseText()
