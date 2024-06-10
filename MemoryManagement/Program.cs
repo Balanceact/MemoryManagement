@@ -221,7 +221,8 @@
                 }
             } while (subMenu);
         }
-        // Svar 3.1: a. Stack<string> theStack = new Stack<string>();
+        // Svar 3.1: Stacken tar från fel ände jämfört med vad vi förväntar oss av en kö i en butik.
+        //           a. Stack<string> theStack = new Stack<string>();
         //           b. theStack.Push("Kalle");
         //           c. theStack.Push("Greta");
         //           d. theStack.Pop();
@@ -252,7 +253,6 @@
             for (int i = 0; i < input.Length ; i++)
             {
                 theStack.Push(input[i]);
-                //Console.WriteLine($"{i} {theStack.Peek()}");
             }
             for (int i = theStack.Count; i > 0 ; i--)
             {
